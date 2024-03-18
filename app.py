@@ -1,5 +1,4 @@
 import streamlit as st
-import streamlit_ace
 import pandas as pd
 import re
 from streamlit_ace import st_ace, KEYBINDINGS, LANGUAGES, THEMES
@@ -18,7 +17,6 @@ def run_query():
 
 def validate_sql(query:str, conn: DuckDBPyConnection):
     sql = conn.sql(query)
-    print(sql)
     if re.search("create".lower(),query):
          st.success("Tabela criada com sucesso!")
     if re.search("update".lower(),query):   
@@ -34,7 +32,7 @@ def validate_sql(query:str, conn: DuckDBPyConnection):
             )
             st.dataframe(results_df, use_container_width=True)
             export = results_df.to_csv()
-            st.download_button(label="Download Results", data=export, file_name='query_results.csv' )
+            st.download_button(label="Download", data=export, file_name='query_results.csv' )
 
 with intro:
     # st.title("Bem-vindo ao Aplicativo de Análise de Dados utilizando SQL")
@@ -144,11 +142,11 @@ with qry:
              value="",
                             placeholder="--Selecione uma base e digite sua SQL Query aqui!",
                             language= "sql",
-                            theme=col3.selectbox("Select Theme",options=THEMES),
-                            keybinding=col4.selectbox("Select Keybinding",options=KEYBINDINGS),
+                            theme=col3.selectbox("Selecionar o tema",options=THEMES),
+                            keybinding=col4.selectbox("Selecionar Keybinding",options=KEYBINDINGS),
                             wrap=True,
 
-                            font_size=col5.slider("Font Size", 10, 24, 16),
+                            font_size=col5.slider("Tamanho da Fonte", 10, 24, 16),
                             min_lines=15,
                             key="run_query",
                             height=150

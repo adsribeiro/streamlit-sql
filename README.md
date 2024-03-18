@@ -1,5 +1,9 @@
 # Apresentação do Aplicativo de Análise de Dados streamlit-sql
 
+[![Aplicativo](assets/app-image.png)](https://streamlit-sql.onrender.com)
+
+![Aplicativo](assets/app-gif.gif)
+
 Bem-vindo ao nosso aplicativo de Análise de Dados! Este aplicativo foi desenvolvido para facilitar a criação e análise de bases de dados utilizando DuckDB.
 
 ## Como Funciona
