@@ -25,11 +25,7 @@ def validate_sql(query:str, conn: DuckDBPyConnection):
          st.success("Drop table com sucesso!")
     else:
         if sql is not None:
-            cols = [column for column in sql.columns]
-            results_df= pd.DataFrame.from_records(
-                data = sql.fetchall(), 
-                columns = cols
-            )
+            results_df = sql.to_df()
             st.dataframe(results_df, use_container_width=True)
             export = results_df.to_csv()
             st.download_button(label="Download", data=export, file_name='query_results.csv' )
