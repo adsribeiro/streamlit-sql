@@ -91,7 +91,7 @@ with tbl:
         if file_type in ['csv', 'json', 'parquet', 'xlsx']:
             try:
                 if file_type == 'csv':
-                    df = pd.read_csv(file, encoding='latin1')
+                    df = pd.read_csv(file)
                 elif file_type == 'json':
                     df = pd.read_json(file)
                 elif file_type == 'parquet':
