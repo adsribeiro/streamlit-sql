@@ -82,7 +82,7 @@ with tbl:
     st.markdown("## Inserir Dados")
 
     # Upload do arquivo
-    file = st.file_uploader("Selecione um arquivo CSV, JSON, Parquet ou Excel (XLSX)")
+    file = st.file_uploader("Selecione um arquivo CSV, JSON, Parquet ou Excel (XLSX)",)
 
     if file is not None:
         # Verificar o tipo de arquivo
@@ -91,7 +91,7 @@ with tbl:
         if file_type in ['csv', 'json', 'parquet', 'xlsx']:
             try:
                 if file_type == 'csv':
-                    df = pd.read_csv(file)
+                    df = pd.read_csv(file, encoding='latin1')
                 elif file_type == 'json':
                     df = pd.read_json(file)
                 elif file_type == 'parquet':
@@ -112,6 +112,7 @@ with tbl:
                     if table:
                         create_table(conn=conn,table=table)
                         st.success(f"Dados inseridos com sucesso na tabela '{table}'.")
+                        st.session_state['file'] = None
                     else:
                         st.error("Por favor, forneça um nome válido para a tabela.")
             except Exception as e:
